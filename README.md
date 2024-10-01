@@ -1,4 +1,4 @@
-![123](https://github.com/user-attachments/assets/6e0a6f48-5f05-4bb9-b2e3-b90701847152)Table Creation
+TABLE CREATE
 1.	Create Authors Table
 o	Purpose: Creates a table to store authors, with AuthorID as the primary key and Name as a required field.
 o	Outcome: The table was successfully created.
@@ -55,7 +55,9 @@ o	Outcome: The result includes "Harry Potter and the Philosopher's Stone" and "T
 ![pic 1](https://github.com/user-attachments/assets/7015918d-2d3e-4642-b3c6-ba0aace3293f)
 ![pic2](https://github.com/user-attachments/assets/76e55e1e-c6f1-4fb9-abef-f02250594b1e)
 ![pic3](https://github.com/user-attachments/assets/fe741eca-f961-4b4f-ba2e-2b20b2dd4c8e)
+![pic6](https://github.com/user-attachments/assets/c22c230e-88af-44bb-809e-fe24bd57b136)
 ![123](https://github.com/user-attachments/assets/ec9bf9f0-c2f4-484e-b47a-86429db2b0eb)
+
 
 
 
