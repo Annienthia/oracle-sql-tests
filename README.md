@@ -49,6 +49,8 @@ TCL (Transaction Control Language): Commits or rolls back transactions to manage
 
 
 below there are screenshoots of the results and conceptual diagram:
+
+
 **TABLE COURSES**
 <img width="239" alt="courses result" src="https://github.com/user-attachments/assets/f33ec15c-4e1a-49f6-b475-31e369478571">
 
