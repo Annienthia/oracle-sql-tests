@@ -1,141 +1,120 @@
-
-SQL> CREATE TABLE Authors (
-  2      AuthorID NUMBER PRIMARY KEY,
-  3      Name VARCHAR2(100) NOT NULL
-  4  );
-
-Table created.
-
-SQL> CREATE TABLE Borrowers (
-  2      BorrowerID NUMBER PRIMARY KEY,
-  3      Name VARCHAR2(100) NOT NULL
-  4  );
+SQL> CREATE TABLE Students (
+  2      StudentID NUMBER PRIMARY KEY,
+  3      Name VARCHAR2(100) NOT NULL,
+  4      BirthDate DATE
+  5  );
 
 Table created.
 
-SQL> CREATE TABLE Books (
-  2      BookID NUMBER PRIMARY KEY,
-  3      Title VARCHAR2(255) NOT NULL
-  4  );
+SQL> CREATE TABLE Courses (
+  2      CourseID NUMBER PRIMARY KEY,
+  3      CourseName VARCHAR2(100) NOT NULL,
+  4      Credits NUMBER
+  5  );
 
 Table created.
 
-SQL> CREATE TABLE BookAuthors (
-  2      BookID NUMBER,
-  3      AuthorID NUMBER,
-  4      PRIMARY KEY (BookID, AuthorID),
-  5      FOREIGN KEY (BookID) REFERENCES Books(BookID),
-  6      FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
-  7  );
+SQL> CREATE TABLE Enrollments (
+  2      StudentID NUMBER,
+  3      CourseID NUMBER,
+  4      EnrollmentDate DATE,
+  5      PRIMARY KEY (StudentID, CourseID),
+  6      FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+  7      FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+  8  );
 
 Table created.
 
-SQL> INSERT INTO Authors (AuthorID, Name) VALUES (1, 'J.K. Rowling');
+SQL> INSERT INTO Students (StudentID, Name, BirthDate) VALUES (1, 'John Doe', TO_DATE('2000-01-15', 'YYYY-MM-DD'));
 
 1 row created.
 
-SQL> INSERT INTO Authors (AuthorID, Name) VALUES (2, 'J.R.R. Tolkien');
+SQL> INSERT INTO Students (StudentID, Name, BirthDate) VALUES (2, 'Jane Smith', TO_DATE('1999-05-23', 'YYYY-MM-DD'));
 
 1 row created.
 
-SQL> INSERT INTO Borrowers (BorrowerID, Name) VALUES (1, 'Alice');
+SQL> INSERT INTO Courses (CourseID, CourseName, Credits) VALUES (1, 'Mathematics', 3);
 
 1 row created.
 
-SQL> INSERT INTO Borrowers (BorrowerID, Name) VALUES (2, 'Bob');
+SQL> INSERT INTO Courses (CourseID, CourseName, Credits) VALUES (2, 'Computer Science', 4);
 
 1 row created.
 
-SQL> INSERT INTO Books (BookID, Title) VALUES (1, 'Harry Potter and the Sorcerer\'s Stone');
-ERROR:
-ORA-01756: quoted string not properly terminated
-
-
-SQL> INSERT INTO Books (BookID, Title) VALUES (1, 'Harry Potter and the Sorcerer''s Stone');
+SQL> INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate) VALUES (1, 1, TO_DATE('2024-09-01', 'YYYY-MM-DD'));
 
 1 row created.
 
-SQL> INSERT INTO Books (BookID, Title) VALUES (2, 'The Hobbit');
+SQL> INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate) VALUES (2, 2, TO_DATE('2024-09-01', 'YYYY-MM-DD'));
 
 1 row created.
 
-SQL> INSERT INTO BookAuthors (BookID, AuthorID) VALUES (1, 1);
+SQL> INSERT INTO Enrollments (StudentID, CourseID, EnrollmentDate) VALUES (1, 2, TO_DATE('2024-09-01', 'YYYY-MM-DD'));
 
 1 row created.
 
-SQL> INSERT INTO BookAuthors (BookID, AuthorID) VALUES (2, 2);
-
-1 row created.
-
-SQL> INSERT INTO BookAuthors (BookID, AuthorID) VALUES (1, 2);
-
-1 row created.
-
-SQL> UPDATE Borrowers SET Name = 'Alice Smith' WHERE BorrowerID = 1;
+SQL> UPDATE Students SET Name = 'Johnathan Doe' WHERE StudentID = 1;
 
 1 row updated.
 
-SQL> UPDATE Books SET Title = 'Harry Potter and the Philosopher\'s Stone' WHERE BookID = 1;
-ERROR:
-ORA-01756: quoted string not properly terminated
-
-
-SQL> UPDATE Books SET Title = 'Harry Potter and the Philosopher''s Stone' WHERE BookID = 1;
+SQL> UPDATE Courses SET CourseName = 'Advanced Mathematics' WHERE CourseID = 1;
 
 1 row updated.
 
-SQL> DELETE FROM Authors WHERE AuthorID = 2;
-DELETE FROM Authors WHERE AuthorID = 2
-*
-ERROR at line 1:
-ORA-02292: integrity constraint (SYSTEM.SYS_C008333) violated - child record
-found
-
-
-SQL> DELETE FROM Authors WHERE AuthorID = 2;
-DELETE FROM Authors WHERE AuthorID = 2
-*
-ERROR at line 1:
-ORA-02292: integrity constraint (SYSTEM.SYS_C008333) violated - child record
-found
-
-
-SQL> SELECT * FROM BookAuthors WHERE AuthorID = 2;
-
-    BOOKID   AUTHORID
----------- ----------
-         2          2
-         1          2
-
-SQL> DELETE FROM BookAuthors WHERE AuthorID = 2;
+SQL> DELETE FROM Enrollments WHERE CourseID = 2;
 
 2 rows deleted.
 
-SQL> DELETE FROM Authors WHERE AuthorID = 2;
+SQL> DELETE FROM Courses WHERE CourseID = 2;
 
 1 row deleted.
 
-SQL> SELECT b.Title, a.Name
-  2  FROM Books b
-  3  JOIN BookAuthors ba ON b.BookID = ba.BookID
-  4  JOIN Authors a ON ba.AuthorID = a.AuthorID;
+SQL> SELECT s.Name, c.CourseName
+  2  FROM Students s
+  3  JOIN Enrollments e ON s.StudentID = e.StudentID
+  4  JOIN Courses c ON e.CourseID = c.CourseID;
 
-TITLE
---------------------------------------------------------------------------------
 NAME
 --------------------------------------------------------------------------------
-Harry Potter and the Philosopher's Stone
-J.K. Rowling
-
-
-SQL> SELECT b.Title
-  2  FROM Books b
-  3  JOIN Borrowers br ON br.BorrowerID = 1;
-
-TITLE
+COURSENAME
 --------------------------------------------------------------------------------
-Harry Potter and the Philosopher's Stone
-The Hobbit
+Johnathan Doe
+Advanced Mathematics
 
-SQL>
 
+SQL> SELECT s.Name, e.EnrollmentDate
+  2  FROM Students s
+  3  JOIN Enrollments e ON s.StudentID = e.StudentID
+  4  WHERE e.CourseID = 1;
+
+NAME
+--------------------------------------------------------------------------------
+ENROLLMEN
+---------
+Johnathan Doe
+01-SEP-24
+
+
+SQL> CREATE TABLE Instructors (
+  2      InstructorID NUMBER PRIMARY KEY,
+  3      Name VARCHAR2(100) NOT NULL
+  4  );
+
+Table created.
+
+SQL> INSERT INTO Instructors (InstructorID, Name) VALUES (1, 'Dr. Smith');
+
+1 row created.
+
+SQL> INSERT INTO Instructors (InstructorID, Name) VALUES (2, 'Prof. Johnson');
+
+1 row created.
+SQL> GRANT SELECT, INSERT, UPDATE, DELETE ON Students TO system;
+
+Grant succeeded.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> ROLLBACK;
