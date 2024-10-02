@@ -118,3 +118,5 @@ SQL> COMMIT;
 Commit complete.
 
 SQL> ROLLBACK;
+
+Rollback complete.
