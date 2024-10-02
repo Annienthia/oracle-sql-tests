@@ -1,66 +1,73 @@
-TABLE CREATE
-1.	Create Authors Table
-o	Purpose: Creates a table to store authors, with AuthorID as the primary key and Name as a required field.
-o	Outcome: The table was successfully created.
-2.	Create Borrowers Table
-o	Purpose: Creates a table to store borrowers, similar to the Authors table.
-o	Outcome: The table was successfully created.
-3.	Create Books Table
-o	Purpose: Creates a table to store books, with BookID as the primary key and Title as a required field.
-o	Outcome: The table was successfully created.
-4.	Create BookAuthors Table
-o	Purpose: Creates a junction table to establish a many-to-many relationship between books and authors. It contains BookID and AuthorID as a composite primary key, enforcing referential integrity.
-o	Outcome: The table was successfully created.
-Data Insertion
-5.	Insert Authors
-o	Purpose: Adds two authors to the Authors table.
-o	Outcome: Both rows were successfully created.
-6.	Insert Borrowers
-o	Purpose: Adds two borrowers to the Borrowers table.
-o	Outcome: Both rows were successfully created.
-7.	Insert Books
-o	Error Encountered: The command failed due to improperly terminated string (single quote issue).
-o	Outcome: The corrected command successfully inserted the first book.
-o	Purpose: Adds a second book to the Books table.
-o	Outcome: The row was successfully created.
-8.	Insert into BookAuthors
-o	Purpose: Creates associations between books and authors, linking the books to their respective authors.
-o	Outcome: All three rows were successfully created.
-Data Updates
-9.	Update Borrowers
-o	Purpose: Updates Alice's name to "Alice Smith."
-o	Outcome: The row was successfully updated.
-10.	Update Books
-o	Error Encountered: The command failed due to improperly terminated string (single quote issue).
-o	Outcome: The corrected command successfully updated the title of the book.
-Data Deletion
-11.	Delete Author
-o	Error Encountered: This command failed because there were still references to this author in the BookAuthors table, violating the foreign key constraint.
-12.	Check Child Records
-o	Purpose: Identifies which books are associated with AuthorID = 2.
-o	Outcome: The query returned two records, showing the association of the author with two books.
-13.	Delete from BookAuthors
-o	Purpose: Removes associations from the BookAuthors table for the author.
-o	Outcome: Two rows were successfully deleted.
-14.	Delete Author Again
-o	Purpose: Now that all references are removed, this command deletes the author.
-o	Outcome: The row was successfully deleted.
-Data Retrieval
-15.	Retrieve Books and Authors
-o	Purpose: Retrieves all books along with their authors.
-o	Outcome: The result shows the title of "Harry Potter and the Philosopher's Stone" by "J.K. Rowling."
-16.	Retrieve Books Borrowed by a Specific Borrower
-o	Purpose: Retrieves the titles of books borrowed by the borrower with BorrowerID = 1.
-o	Outcome: The result includes "Harry Potter and the Philosopher's Stone" and "The Hobbit," although logically it should connect through a linking table which is not shown here.
-![pic 1](https://github.com/user-attachments/assets/7015918d-2d3e-4642-b3c6-ba0aace3293f)
-![pic2](https://github.com/user-attachments/assets/76e55e1e-c6f1-4fb9-abef-f02250594b1e)
-![pic3](https://github.com/user-attachments/assets/fe741eca-f961-4b4f-ba2e-2b20b2dd4c8e)
-![pic6](https://github.com/user-attachments/assets/c22c230e-88af-44bb-809e-fe24bd57b136)
-![123](https://github.com/user-attachments/assets/ec9bf9f0-c2f4-484e-b47a-86429db2b0eb)
+**STUDENT MANAGEMENT SYSTEM**
+
+The Student Management System (SMS) is designed to manage various aspects of student and course information within an educational institution.
+
+Here’s a brief overview of how it works and the SQL code used:
+
+
+**Table Creation:**
+
+Students: Stores student details (ID, Name, BirthDate).
+Courses: Stores course details (ID, CourseName, Credits).
+Enrollments: Manages the many-to-many relationship between students and courses (StudentID, CourseID, EnrollmentDate).
+<img width="437" alt="CREATE" src="https://github.com/user-attachments/assets/2a99a656-9f7c-44eb-87bc-22154493284e">
+
+
+
+**Data Insertion:**
+Adds records to the Students, Courses, and Enrollments tables.
+<img width="744" alt="INSERT" src="https://github.com/user-attachments/assets/1e178668-7789-4ccf-806a-3f573c4013bc">
+
+
+**Data Update:**
+Modifies existing records in the Students and Courses tables.
+<img width="523" alt="UPDATE" src="https://github.com/user-attachments/assets/9176785f-5bc5-45ce-8898-47998e42f9ad">
+
+
+**Data deletion:**
+Removes specific records from the Enrollments and Courses tables, ensuring no foreign key constraints are violated.
+<img width="380" alt="DELETION" src="https://github.com/user-attachments/assets/4f66e6f4-ad29-4e71-ac86-7c278a0f65d9">
+
+
+**Data Retrieval:**
+Performs joins to retrieve related data across tables, such as student names and their enrolled courses, and enrollment dates for specific courses.
+<img width="453" alt="RETRIEVEL" src="https://github.com/user-attachments/assets/7fda1520-3653-45a3-8d1e-717fe1f65e8f">
+
+
+**Additional Operations:**
+DDL (Data Definition Language): Creates a new table (Instructors).
+<img width="315" alt="DDL" src="https://github.com/user-attachments/assets/33c913f7-a84f-4a92-9fba-ec1c0fae8d10">
+
+
+DML (Data Manipulation Language): Inserts data into the Instructors table.
+<img width="567" alt="DML" src="https://github.com/user-attachments/assets/fe98e861-bf98-454b-a3e0-4ce48ffbc439">
+
+DCL (Data Control Language): Grants specific privileges to a user.
+<img width="443" alt="DCL" src="https://github.com/user-attachments/assets/6f4771f5-287d-4342-80f1-8790d6e81276">
+
+TCL (Transaction Control Language): Commits or rolls back transactions to manage data integrity.<img width="197" alt="TCL" src="https://github.com/user-attachments/assets/12efb817-77d3-4124-9c67-9193574622e4">
+
+
+below there are screenshoots of the results and conceptual diagram:
+**TABLE COURSES**
+<img width="239" alt="courses result" src="https://github.com/user-attachments/assets/f33ec15c-4e1a-49f6-b475-31e369478571">
+
+**TABLE STUDENTS**
+<img width="279" alt="student result" src="https://github.com/user-attachments/assets/4a7d36bb-2cdd-4fe3-a04c-504ce56ea2df">
+
+TABLE ENROLMENT 
+<img width="228" alt="enrolment result" src="https://github.com/user-attachments/assets/c955f338-db14-400c-bf3f-b1b9228f6ccd">
+
+**DIAGRAM**
+<img width="486" alt="relationship" src="https://github.com/user-attachments/assets/cf641997-642e-4942-b228-ec881ed1ff83">
 
 
 
 
+
+
+
+This system ensures efficient management of student and course information, facilitating smooth administrative and academic processes within the institution.
 
 
 
